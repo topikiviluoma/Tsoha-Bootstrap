@@ -1,5 +1,5 @@
 <?php
-
+require 'app/models/tehtava.php';
 class HelloWorldController extends BaseController {
 
     public static function index() {
@@ -8,8 +8,11 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        View::make('helloworld.html');
-        // Testaa koodiasi täällä
+        $pyykit = Tehtava::find(1);
+        $tehtavat = Tehtava::all();
+        // Kint-luokan dump-metodi tulostaa muuttujan arvon
+        Kint::dump($tehtavat);
+        Kint::dump($pyykit);
     }
 
     public static function login() {
