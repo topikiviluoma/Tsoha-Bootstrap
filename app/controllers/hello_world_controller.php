@@ -1,5 +1,5 @@
 <?php
-require 'app/models/tehtava.php';
+
 class HelloWorldController extends BaseController {
 
     public static function index() {
@@ -22,5 +22,7 @@ class HelloWorldController extends BaseController {
     public static function tehtavat() {
         View::make('suunnitelmat/tehtavat.html');
     }
+    
+    
 
 }

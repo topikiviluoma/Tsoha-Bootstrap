@@ -16,3 +16,15 @@ $routes->get('/tehtavat', function() {
 HelloWorldController::tehtavat();
 });
 
+$routes->get('/tehtava', function(){
+  GameController::index();
+});
+
+$routes->get('/tehtava/:id', function($id){
+  TehtavaController::show($id);
+});
+
+$routes->get('/tehtava/', function() {
+    TehtavaController::store();
+});
+

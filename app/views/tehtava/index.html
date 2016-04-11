@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Käyttäjän tehtävät</h1>
+
+  <p>
+    <a href="{{base_path}}/game/new" class="btn btn-success">Lisää peli</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Tärkeys</th>
+        
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for tehtava in tehtavat %}
+        <tr>
+          <td><a href="{{base_path}}/game/{{tehtava.id}}">{{tehtava.nimi}}</td>
+          <td>{{tehtava.nimi}}</td>
+          
+          
+          
+          <td><a class="btn btn-default btn-sm" href="{{base_path}}/tehtava/{{tehtava.id}}/edit">Muokkaa</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %
