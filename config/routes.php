@@ -13,18 +13,19 @@ $routes->get('/login', function() {
 });
 
 $routes->get('/tehtavat', function() {
-HelloWorldController::tehtavat();
+    HelloWorldController::tehtavat();
 });
 
-$routes->get('/tehtava', function(){
-  GameController::index();
+$routes->get('/tehtava', function() {
+    TehtavaController::index();
 });
 
-$routes->get('/tehtava/:id', function($id){
-  TehtavaController::show($id);
-});
 
-$routes->get('/tehtava/', function() {
+$routes->post('/tehtava/', function() {
     TehtavaController::store();
+});
+
+$routes->get('/tehtava/new', function() {
+    TehtavaController::create();
 });
 

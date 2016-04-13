@@ -3,7 +3,7 @@
 class Tehtava extends BaseModel {
 
     //put your code here
-    public $id, $nimi, $tarkeys;
+    public $id, $kayttaja_id, $nimi, $tarkeys;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -20,6 +20,7 @@ class Tehtava extends BaseModel {
         foreach ($rows as $row) {
             $tehtavat[] = new Tehtava(array(
                 'id' => $row['id'],
+                'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
                 'tarkeys' => $row['tarkeys']
             ));
@@ -37,6 +38,7 @@ class Tehtava extends BaseModel {
         if ($row) {
             $tehtava = new Tehtava(array(
                 'id' => $row['id'],
+                'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
                 'tarkeys' => $row['tarkeys']
             ));
@@ -45,5 +47,7 @@ class Tehtava extends BaseModel {
         }
         return null;
     }
+    
+    
 
 }
