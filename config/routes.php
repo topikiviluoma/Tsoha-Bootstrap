@@ -29,3 +29,7 @@ $routes->get('/tehtava/new', function() {
     TehtavaController::create();
 });
 
+$routes->get('/tehtava/:id', function($id) {
+    TehtavaController::show($id);
+});
+

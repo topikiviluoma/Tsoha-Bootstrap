@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Tehtävän nimi: {{tehtava.nimi}}</h1>
+
+<p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+</p>
+
+<ul>
+    <li><strong>Nimi :</strong> {{tehtava.nimi}}</li>
+    <li><strong>Tärkeys :</strong> {{tehtava.tarkeys}}</li>
+
+</ul>
+<
+{% endblock %}

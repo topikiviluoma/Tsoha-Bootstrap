@@ -47,7 +47,13 @@ class Tehtava extends BaseModel {
         }
         return null;
     }
-    
-    
+
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Tehtava (nimi, tarkeys) VALUES (:nimi, :tarkeys) RETURNING id');
+        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $row = $query->fetch();
+
+        $this->id = $row['id'];
+    }
 
 }

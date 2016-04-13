@@ -19,15 +19,10 @@ class TehtavaController extends BaseController {
     
     Kint::dump($params);
 
-//    Redirect::to('/tehtava/' . $tehtava->id, array('message' => 'Tehävä on lisätty kirjastoosi!'));
+    Redirect::to('/tehtava/' . $tehtava->id, array('message' => 'Tehävä on lisätty kirjastoosi!'));
   }
   
-  public function save(){
-    $query = DB::connection()->prepare('INSERT INTO Tehtava (nimi, tarkeys) VALUES (:nimi, :tarkeys RETURNING id');
-    $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
-    $row = $query->fetch();
-    $this->id = $row['id'];
-  }
+ 
   
   public static function create() {
       View::make('tehtava/new.html');
@@ -35,6 +30,7 @@ class TehtavaController extends BaseController {
   
   public static function show($id) {
       $tehtava = Tehtava::find($id);
+      View::make('tehtava/tehtava_show.html', array(':id' => $tehtava));
   }
 }
 
