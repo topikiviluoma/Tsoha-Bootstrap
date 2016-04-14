@@ -60,12 +60,12 @@ class Tehtava extends BaseModel {
     
     public function delete($id) {
         $query = DB::connection()->prepare('DELETE FROM Tehtava WHERE id = :id');
-        $query->execute();
+        $query->execute(array('id' => $id));
     }
     
-    public function edit($id) {
+    public function update($id) {
         $query = DB::connection()->prepare('UPDATE Tehtava SET nimi=:nimi, tarkeys=:tarkeys WHERE id = :id');
-        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $query->execute(array('id' => $id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
         
         
     }

@@ -37,6 +37,12 @@ class TehtavaController extends BaseController {
       $tehtava = Tehtava::find($id);
       View::make('tehtava/edit.html', array('tehtava' => $tehtava));
   }
+  
+  public static function update($id) {
+      $tehtava = Tehtava::find($id);
+      $tehtava->update($id);
+      Redirect::to('/tehtava/' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
+  }
 }
 
 
