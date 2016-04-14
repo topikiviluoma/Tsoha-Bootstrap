@@ -3,7 +3,7 @@
 <h1>Muokkaa tehtävää {{tehtava.nimi}}</h1>
 <h3>Nykyinen tärkeys: {{tehtava.tarkeys}}</h3>
 
-<form method="post" action="{{base_path}}/tehtava">
+<form method="post" action="{{base_path}}/tehtava/{{tehtava.id}}/edit">
     <div class="form-group">
         <label>Nimi</label>
         <input type="text" name="nimi" class="form-control">

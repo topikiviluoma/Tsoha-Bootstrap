@@ -39,6 +39,7 @@ class TehtavaController extends BaseController {
   }
   
   public static function update($id) {
+      $params = $_POST;
       $tehtava = Tehtava::find($id);
       $tehtava->update($id);
       Redirect::to('/tehtava/' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));

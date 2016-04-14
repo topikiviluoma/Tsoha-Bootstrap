@@ -33,11 +33,12 @@ $routes->get('/tehtava/:id', function($id) {
     TehtavaController::show($id);
 });
 
+$routes->post('/tehtava/:id/edit', function($id) {
+TehtavaController::update($id);
+});
 
 $routes->get('/tehtava/:id/edit', function($id) {
 TehtavaController::edit($id);
 });
 
-$routes->post('/tehtava/:id/edit', function($id) {
-TehtavaController::update($id);
-});
+
