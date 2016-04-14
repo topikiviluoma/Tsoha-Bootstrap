@@ -24,8 +24,10 @@ class Tehtava extends BaseModel {
                 'nimi' => $row['nimi'],
                 'tarkeys' => $row['tarkeys']
             ));
-            return $tehtavat;
         }
+        Kint::dump($rows);
+        return $tehtavat;
+
         return null;
     }
 
@@ -54,6 +56,18 @@ class Tehtava extends BaseModel {
         $row = $query->fetch();
 
         $this->id = $row['id'];
+    }
+    
+    public function delete($id) {
+        $query = DB::connection()->prepare('DELETE FROM Tehtava WHERE id = :id');
+        $query->execute();
+    }
+    
+    public function edit($id) {
+        $query = DB::connection()->prepare('UPDATE Tehtava SET nimi=:nimi, tarkeys=:tarkeys WHERE id = :id');
+        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        
+        
     }
 
 }

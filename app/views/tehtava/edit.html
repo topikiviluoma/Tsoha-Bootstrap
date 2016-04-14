@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa tehtävää {{tehtava.nimi}}</h1>
+<h3>Nykyinen tärkeys: {{tehtava.tarkeys}}</h3>
+
+<form method="post" action="{{base_path}}/tehtava">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Tärkeys</label>
+        <input type="number" name="tarkeys" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Päivitä</button>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -30,7 +30,12 @@ class TehtavaController extends BaseController {
   
   public static function show($id) {
       $tehtava = Tehtava::find($id);
-      View::make('tehtava/tehtava_show.html', array(':id' => $tehtava));
+      View::make('tehtava/show.html', array('tehtava' => $tehtava));
+  }
+  
+  public static function edit($id) {
+      $tehtava = Tehtava::find($id);
+      View::make('tehtava/edit.html', array('tehtava' => $tehtava));
   }
 }
 
