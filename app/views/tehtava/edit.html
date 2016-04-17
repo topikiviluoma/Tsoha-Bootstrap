@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Muokkaa tehtävää {{tehtava.nimi}}</h1>
+
+<h1>Muokkaa tehtävää: "{{tehtava.nimi}}"</h1>
 <h3>Nykyinen tärkeys: {{tehtava.tarkeys}}</h3>
 
 <form method="post" action="{{base_path}}/tehtava/{{tehtava.id}}/edit">

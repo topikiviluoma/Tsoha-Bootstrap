@@ -40,10 +40,22 @@ class TehtavaController extends BaseController {
   
   public static function update($id) {
       $params = $_POST;
-      $tehtava = Tehtava::find($id);
+      $tehtava = new Tehtava(array(
+      'nimi' => $params['nimi'],
+      'tarkeys' => $params['tarkeys'],
+     
+    ));
       $tehtava->update($id);
       Kint::dump($params);
-//      Redirect::to('/tehtava/' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
+      Redirect::to('/tehtava' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
+  }
+  
+  public static function destroy($id) {
+      $tehtava = new Tehtava(array('id' => $id));
+      
+      $tehtava->destroy();
+      
+      Redirect::to('/tehtava', array('message' => 'Tehtava on poistettu onnistuneesti!'));
   }
 }
 

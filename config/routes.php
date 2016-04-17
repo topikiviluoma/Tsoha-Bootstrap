@@ -20,6 +20,9 @@ $routes->get('/tehtava', function() {
     TehtavaController::index();
 });
 
+$routes->post('/tehtava/:id/edit', function($id) {
+TehtavaController::update($id);
+});
 
 $routes->post('/tehtava/', function() {
     TehtavaController::store();
@@ -33,12 +36,12 @@ $routes->get('/tehtava/:id', function($id) {
     TehtavaController::show($id);
 });
 
-$routes->post('/tehtava/:id/edit', function($id) {
-TehtavaController::update($id);
-});
-
 $routes->get('/tehtava/:id/edit', function($id) {
 TehtavaController::edit($id);
+});
+
+$routes->post('/tehtava/:id/destroy', function($id) {
+TehtavaController::destroy($id);
 });
 
 

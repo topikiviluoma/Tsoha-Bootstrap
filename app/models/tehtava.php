@@ -7,10 +7,11 @@ class Tehtava extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_prio');
     }
 
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Tehtava');
+        $query = DB::connection()->prepare('SELECT * FROM Tehtava ORDER BY tarkeys DESC');
 
         $query->execute();
 
@@ -57,17 +58,27 @@ class Tehtava extends BaseModel {
 
         $this->id = $row['id'];
     }
-    
-    public function delete($id) {
+
+    public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Tehtava WHERE id = :id');
-        $query->execute(array('id' => $id));
+        $query->execute(array('id' => $this->id));
     }
-    
+
     public function update($id) {
         $query = DB::connection()->prepare('UPDATE Tehtava SET nimi=:nimi, tarkeys=:tarkeys WHERE id = :id');
         $query->execute(array('id' => $id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
-        
-        
+    }
+
+    public function validate_name() {
+        $errors = array();
+        if ($this->nimi == '' || $this->nimi == null) {
+            $errors[] = 'Nimi ei saa olla tyhjä!';
+        }
+        if (strlen($this->nimi) < 3) {
+            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
+        }
+
+        return $errors;
     }
 
 }

@@ -8,11 +8,13 @@ class HelloWorldController extends BaseController {
     }
 
     public static function sandbox() {
-        $pyykit = Tehtava::find(1);
-        $tehtavat = Tehtava::all();
-        // Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($tehtavat);
-        Kint::dump($pyykit);
+        $pyykit = new Tehtava(array(
+            'nimi' => 'd',
+            'tarkeys' => 'fg'
+        ));
+        $errors = $pyykit->errors();
+        
+        Kint::dump($errors);
     }
 
     public static function login() {
