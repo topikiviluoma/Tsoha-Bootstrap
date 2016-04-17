@@ -44,4 +44,12 @@ $routes->post('/tehtava/:id/destroy', function($id) {
 TehtavaController::destroy($id);
 });
 
+$routes->get('/login', function(){
+  KayttajaController::login();
+});
+
+$routes->post('/login', function(){
+  KayttajaController::handle_login();
+});
+
 
