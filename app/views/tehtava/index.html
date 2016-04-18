@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-<h1>Käyttäjän tehtävät</h1>
-
+{% if user_logged_in %}
+<h1>Käyttäjän {{user_logged_in.nimi}} tehtävät</h1>
+{% endif %}
 <p>
     <a href="{{base_path}}/tehtava/new" class="btn btn-success">Lisää tehtävä</a>
 </p>
@@ -27,10 +28,10 @@
 
 
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/tehtava/{{tehtava.id}}/edit">Muokkaa</a>
-            {{forms.destroy_button("#{base_path}/tehtava/#{tehtava.id}/destroy")}}   
-                
-           
-          </td>
+                {{forms.destroy_button("#{base_path}/tehtava/#{tehtava.id}/destroy")}}   
+
+
+            </td>
         </tr>
         {% endfor %}
     </tbody>

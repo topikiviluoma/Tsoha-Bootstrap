@@ -24,4 +24,22 @@ class Kayttaja extends BaseModel {
         }
     }
 
+    public static function find($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $id));
+
+        $row = $query->fetch();
+
+        if ($row) {
+            $kayttaja = new Tehtava(array(
+            'id' => $row['id'],
+            'nimi' => $row['nimi'],
+            'password' => $row['password']
+            ));
+
+            return $kayttaja;
+        }
+        return null;
+    }
+
 }
