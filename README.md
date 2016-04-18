@@ -11,3 +11,6 @@ Yleisiä linkkejä:
 ## Työn aihe
 
 http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Muistilista.html
+
+## Esimerkkitunnukset
+ktunnus: teppo pw: testaaja
