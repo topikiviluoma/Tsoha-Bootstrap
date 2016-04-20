@@ -80,5 +80,13 @@ class Tehtava extends BaseModel {
 
         return $errors;
     }
+    
+    public function validate_prio() {
+        $errors = array();
+        if (strlen($this->tarkeys) < 0) {
+            $errors[] = 'Tärkeys ei voi olla negatiivinen!';
+        }
+        return $errors;
+    }
 
 }
