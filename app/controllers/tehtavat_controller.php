@@ -3,6 +3,7 @@
 class TehtavaController extends BaseController {
 
     public static function index() {
+        self::check_logged_in();
         $tehtavat = Tehtava::all();
         View::make('tehtava/index.html', array('tehtavat' => $tehtavat));
     }
@@ -28,20 +29,24 @@ class TehtavaController extends BaseController {
     }
 
     public static function create() {
+        self::check_logged_in();
         View::make('tehtava/new.html');
     }
 
     public static function show($id) {
+        self::check_logged_in();
         $tehtava = Tehtava::find($id);
         View::make('tehtava/show.html', array('tehtava' => $tehtava));
     }
 
     public static function edit($id) {
+        self::check_logged_in();
         $tehtava = Tehtava::find($id);
         View::make('tehtava/edit.html', array('tehtava' => $tehtava));
     }
 
     public static function update($id) {
+        self::check_logged_in();
         $params = $_POST;
         $tehtava = new Tehtava(array(
             'nimi' => $params['nimi'],
@@ -53,6 +58,7 @@ class TehtavaController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in();
         $tehtava = new Tehtava(array('id' => $id));
 
         $tehtava->destroy();
