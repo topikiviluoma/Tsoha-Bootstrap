@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Muokkaa kategoriaa: "{{kategoria.nimi}}"</h1>
+
+
+<form method="post" action="{{base_path}}/tehtava/{{kategoria.id}}/edit">
+    <div class="form-group">
+        <label>Nimi</label>
+        <input type="text" name="nimi" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Päivitä</button>
+    </div>
+</form>
+
+
+{% endblock %}

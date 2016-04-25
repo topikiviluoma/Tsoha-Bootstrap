@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+<h1>Tehtävän nimi: {{kategoria.nimi}}</h1>
+
+<p>
+    {{forms.destroy_button("#{base_path}/kategoria/#{kategoria.id}/destroy")}}  
+    <a href="{{base_path}}/tehtava/{{kategoria.id}}/edit" class="btn btn-default">Muokkaa</a>
+</p>
+
+<ul>
+    <li><strong>Nimi :</strong> {{tehtava.nimi}}</li>
+
+</ul>
+
+{% endblock %}

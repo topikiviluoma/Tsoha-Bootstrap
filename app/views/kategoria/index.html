@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+{% if user_logged_in %}
+<h1>Käyttäjän {{user_logged_in.nimi}} kategoriat</h1>
+{% endif %}
+<p>
+    <a href="{{base_path}}/kategoria/new" class="btn btn-success">Lisää kategoria</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for kategoria in kategoriat %}
+        <tr>
+            <td><a href="{{base_path}}/kategoria/{{kategoria.id}}">{{kategoria.nimi}}</td>
+
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/kategoria/{{kategoria.id}}/edit">Muokkaa</a>
+                {{forms.destroy_button("#{base_path}/kategoria/#{kategoria.id}/destroy")}}   
+
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

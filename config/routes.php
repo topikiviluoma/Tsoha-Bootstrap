@@ -17,7 +17,7 @@ $routes->get('/tehtava', function() {
 });
 
 $routes->post('/tehtava/:id/edit', function($id) {
-TehtavaController::update($id);
+    TehtavaController::update($id);
 });
 
 $routes->post('/tehtava/', function() {
@@ -33,23 +33,47 @@ $routes->get('/tehtava/:id', function($id) {
 });
 
 $routes->get('/tehtava/:id/edit', function($id) {
-TehtavaController::edit($id);
+    TehtavaController::edit($id);
 });
 
 $routes->post('/tehtava/:id/destroy', function($id) {
-TehtavaController::destroy($id);
+    TehtavaController::destroy($id);
 });
 
-$routes->get('/login', function(){
-  KayttajaController::login();
+$routes->get('/login', function() {
+    KayttajaController::login();
 });
 
-$routes->post('/login', function(){
-  KayttajaController::handle_login();
+$routes->post('/login', function() {
+    KayttajaController::handle_login();
 });
 
-$routes->post('/logout', function(){
-  KayttajaController::logout();
+$routes->post('/logout', function() {
+    KayttajaController::logout();
+});
+
+$routes->get('/kategoria', function() {
+    KategoriaController::index();
+});
+
+$routes->post('/kategoria/:id/edit', function($id) {
+    KategoriaController::edit($id);
+});
+
+$routes->post('/kategoria/', function() {
+    KategoriaController::store();
+});
+
+$routes->get('/kategoria/:id', function($id) {
+    KategoriaController::show($id);
+});
+
+$routes->get('/kategoria/:id/edit', function($id) {
+    KategoriaController::edit($id);
+});
+
+$routes->post('/kategoria/:id/destroy', function($id) {
+    KategoriaController::destroy($id);
 });
 
 

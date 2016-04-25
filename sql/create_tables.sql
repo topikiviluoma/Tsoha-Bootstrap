@@ -12,7 +12,7 @@ CREATE TABLE Tehtava(
     tarkeys int
 );
 
-CREATE TABLE Luokka(
+CREATE TABLE Kategoria(
     id SERIAL PRIMARY KEY,
     kayttaja_id INTEGER REFERENCES Kayttaja(id),
     tehtava_id INTEGER REFERENCES Tehtava(id),
