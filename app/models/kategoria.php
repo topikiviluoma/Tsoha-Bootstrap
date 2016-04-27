@@ -6,6 +6,7 @@ class Kategoria extends BaseModel {
     
     public function __construct($attributes = null) {
         parent::__construct($attributes);
+         $this->validators = array('validate_name');
     }
     
     public static function all() {
@@ -65,6 +66,18 @@ class Kategoria extends BaseModel {
     public function update($id) {
         $query = DB::connection()->prepare('UPDATE Kategoria SET nimi=:nimi WHERE id = :id');
         $query->execute(array('id' => $id, 'nimi' => $this->nimi));
+    }
+    
+    public function validate_name() {
+        $errors = array();
+        if ($this->nimi == '' || $this->nimi == null) {
+            $errors[] = 'Nimi ei saa olla tyhjä!';
+        }
+        if (strlen($this->nimi) < 3) {
+            $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
+        }
+
+        return $errors;
     }
             
 }

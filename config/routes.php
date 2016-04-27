@@ -64,6 +64,10 @@ $routes->post('/kategoria/', function() {
     KategoriaController::store();
 });
 
+$routes->get('/kategoria/new', function() {
+    KategoriaController::create();
+});
+
 $routes->get('/kategoria/:id', function($id) {
     KategoriaController::show($id);
 });
