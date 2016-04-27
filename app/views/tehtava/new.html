@@ -12,10 +12,20 @@
         <label>Tärkeys (valinnainen)</label>
         <input type="number" name="tarkeys" class="form-control">
     </div>
+    <div class="form-group">
+    <label>Kategoria</label>
+  <select class="form-control" name="kategoria">
+    {% for kategoria in kategoriat %}
+      <option value="{{kategoria.id}}">{{kategoria.nimi}}</option>
+    {% endfor %}
+  </select>
+</div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Lisää</button>
     </div>
+    
+  
 </form>
 
 

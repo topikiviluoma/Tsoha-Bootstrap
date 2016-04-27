@@ -10,9 +10,11 @@ class TehtavaController extends BaseController {
 
     public static function store() {
         $params = $_POST;
+        $kategoria = $params['kategoria'];
         $attributes = array(
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys'],
+            'kategoria' => $kategoria
         );
 
         $tehtava = new Tehtava($attributes);
@@ -48,9 +50,11 @@ class TehtavaController extends BaseController {
     public static function update($id) {
         self::check_logged_in();
         $params = $_POST;
+        $kategoria = $params['kategoria'];
         $tehtava = new Tehtava(array(
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys'],
+            'kategoria' => $kategoria
         ));
         $tehtava->update($id);
         Kint::dump($params);
