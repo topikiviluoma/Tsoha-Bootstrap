@@ -57,7 +57,7 @@ class KategoriaController extends BaseController {
 
     public static function destroy($id) {
         self::check_logged_in();
-        $kategoria = new Tehtava(array('id' => $id));
+        $kategoria = new Kategoria(array('id' => $id));
         $kategoria->destroy();
 
         Redirect::to('/kategoria', array('message' => 'Kategoria on poistettu onnistuneesti!'));

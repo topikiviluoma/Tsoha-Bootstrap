@@ -14,7 +14,7 @@ class TehtavaController extends BaseController {
         $attributes = array(
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys'],
-            'kategoria' => $kategoria
+            'kategoria' => $kategoria,
         );
 
         $tehtava = new Tehtava($attributes);
@@ -32,19 +32,22 @@ class TehtavaController extends BaseController {
 
     public static function create() {
         self::check_logged_in();
-        View::make('tehtava/new.html');
+        $kategoriat = Kategoria::all();
+        View::make('tehtava/new.html', array('kategoriat' => $kategoriat));
     }
 
     public static function show($id) {
         self::check_logged_in();
         $tehtava = Tehtava::find($id);
-        View::make('tehtava/show.html', array('tehtava' => $tehtava));
+        $kategoriat = Kategoria::all();
+        View::make('tehtava/show.html', array('tehtava' => $tehtava, 'kategoriat' => $kategoriat));
     }
 
     public static function edit($id) {
         self::check_logged_in();
         $tehtava = Tehtava::find($id);
-        View::make('tehtava/edit.html', array('tehtava' => $tehtava));
+        $kategoriat = Kategoria::all();
+        View::make('tehtava/edit.html', array('tehtava' => $tehtava, 'kategoriat' => $kategoriat));
     }
 
     public static function update($id) {
@@ -54,7 +57,7 @@ class TehtavaController extends BaseController {
         $tehtava = new Tehtava(array(
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys'],
-            'kategoria' => $kategoria
+            'kategoria' => $kategoria,
         ));
         $tehtava->update($id);
         Kint::dump($params);
