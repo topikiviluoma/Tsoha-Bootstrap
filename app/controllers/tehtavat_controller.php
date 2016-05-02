@@ -12,9 +12,9 @@ class TehtavaController extends BaseController {
         $params = $_POST;
         $kategoria = $params['kategoria'];
         $attributes = array(
-            'nimi' => $params['nimi'],
-            'tarkeys' => $params['tarkeys'],
             'kategoria' => $kategoria,
+            'nimi' => $params['nimi'],
+            'tarkeys' => $params['tarkeys']
         );
 
         $tehtava = new Tehtava($attributes);
@@ -27,7 +27,6 @@ class TehtavaController extends BaseController {
         } else {
             View::make('tehtava/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
-
     }
 
     public static function create() {

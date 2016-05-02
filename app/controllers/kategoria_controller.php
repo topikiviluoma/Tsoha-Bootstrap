@@ -35,7 +35,8 @@ class KategoriaController extends BaseController {
     public static function show($id) {
         self::check_logged_in();
         $kategoria = Kategoria::find($id);
-        View::make('kategoria/show.html', array('kategoria' => $kategoria));
+        $tehtavat = Kategoria::allInCategory($id);
+        View::make('kategoria/show.html', array('kategoria' => $kategoria, 'tehtavat' => $tehtavat));
     }
 
     public static function edit($id) {

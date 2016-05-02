@@ -3,7 +3,7 @@
 class Tehtava extends BaseModel {
 
     //put your code here
-    public $id, $kayttaja_id, $nimi, $tarkeys;
+    public $id, $kategoria_id, $nimi, $tarkeys;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -21,7 +21,6 @@ class Tehtava extends BaseModel {
         foreach ($rows as $row) {
             $tehtavat[] = new Tehtava(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
                 'nimi' => $row['nimi'],
                 'tarkeys' => $row['tarkeys']
             ));
@@ -41,7 +40,7 @@ class Tehtava extends BaseModel {
         if ($row) {
             $tehtava = new Tehtava(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
+                'kategoria_id' => $row['kategoria_id'],
                 'nimi' => $row['nimi'],
                 'tarkeys' => $row['tarkeys']
             ));
@@ -52,8 +51,8 @@ class Tehtava extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Tehtava (nimi, tarkeys) VALUES (:nimi, :tarkeys) RETURNING id');
-        $query->execute(array('nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $query = DB::connection()->prepare('INSERT INTO Tehtava (kategoria_id, nimi, tarkeys) VALUES (:kategoria, :nimi, :tarkeys) RETURNING id');
+        $query->execute(array('kategoria' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
         $row = $query->fetch();
 
         $this->id = $row['id'];
@@ -88,5 +87,7 @@ class Tehtava extends BaseModel {
         }
         return $errors;
     }
+    
+    
 
 }

@@ -12,5 +12,38 @@
     <li><strong>Nimi :</strong> {{kategoria.nimi}}</li>
 
 </ul>
+<h2>Tehtävät kategoriassa :</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Tärkeys</th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for tehtava in tehtavat %}
+        <tr>
+            <td><a href="{{base_path}}/tehtava/{{tehtava.id}}">{{tehtava.nimi}}</td>
+            <td>{{tehtava.tarkeys}}</td>
+            <td>{{kategoria.nimi}}</td>
+
+
+
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/tehtava/{{tehtava.id}}/edit">Muokkaa</a>
+                {{forms.destroy_button("#{base_path}/tehtava/#{tehtava.id}/destroy")}}   
+
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
 
 {% endblock %}

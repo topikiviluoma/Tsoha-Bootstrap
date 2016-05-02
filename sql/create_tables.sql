@@ -5,6 +5,11 @@ CREATE TABLE Kayttaja(
     password varchar(50) NOT NULL
 );
 
+CREATE TABLE Kategoria(
+    id SERIAL PRIMARY KEY,
+    nimi varchar(120) NOT NULL
+);
+
 CREATE TABLE Tehtava(
     id SERIAL PRIMARY KEY,
     kategoria_id INTEGER REFERENCES Kategoria(id),
@@ -12,9 +17,6 @@ CREATE TABLE Tehtava(
     tarkeys int
 );
 
-CREATE TABLE Kategoria(
-    id SERIAL PRIMARY KEY,
-    nimi varchar(120) NOT NULL
-);
+
     
     

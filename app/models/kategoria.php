@@ -2,7 +2,7 @@
 
 class Kategoria extends BaseModel {
     
-    public $id, $kayttaja_id, $tehtava_id, $nimi;
+    public $id, $nimi;
     
     public function __construct($attributes = null) {
         parent::__construct($attributes);
@@ -20,13 +20,33 @@ class Kategoria extends BaseModel {
         foreach ($rows as $row) {
             $kategoriat[] = new Kategoria(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
-                'tehtava_id' => $row['tehtava_id'],
                 'nimi' => $row['nimi'],
             ));
         }
         Kint::dump($rows);
         return $kategoriat;
+
+        return null;
+    }
+    
+    public static function allInCategory($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tehtava WHERE kategoria_id = :id');
+        $query->execute(array('id' => $id));
+
+        $rows = $query->fetchAll();
+        
+        $tehtavat = array();
+
+        foreach ($rows as $row) {
+            $tehtavat[] = new Tehtava(array(
+                'id' => $row['id'],
+                'kategoria_id' => $row['kategoria_id'],
+                'nimi' => $row['nimi'],
+                'tarkeys' => $row['tarkeys']
+            ));
+        }
+        Kint::dump($rows);
+        return $tehtavat;
 
         return null;
     }
@@ -40,8 +60,6 @@ class Kategoria extends BaseModel {
         if ($row) {
             $kategoria = new Kategoria(array(
                 'id' => $row['id'],
-                'kayttaja_id' => $row['kayttaja_id'],
-                'tehtava_id' => $row['tehtava_id'],
                 'nimi' => $row['nimi'],
             ));
 
@@ -79,6 +97,8 @@ class Kategoria extends BaseModel {
 
         return $errors;
     }
+    
+    
             
 }
 
