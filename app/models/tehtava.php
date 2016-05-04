@@ -51,8 +51,8 @@ class Tehtava extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Tehtava (kategoria_id, nimi, tarkeys) VALUES (:kategoria, :nimi, :tarkeys) RETURNING id');
-        $query->execute(array('kategoria' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $query = DB::connection()->prepare('INSERT INTO Tehtava (kategoria_id, nimi, tarkeys) VALUES (:kategoria_id, :nimi, :tarkeys) RETURNING id');
+        $query->execute(array('kategoria_id' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
         $row = $query->fetch();
 
         $this->id = $row['id'];
@@ -64,8 +64,8 @@ class Tehtava extends BaseModel {
     }
 
     public function update($id) {
-        $query = DB::connection()->prepare('UPDATE Tehtava SET nimi=:nimi, tarkeys=:tarkeys WHERE id = :id');
-        $query->execute(array('id' => $id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $query = DB::connection()->prepare('UPDATE Tehtava SET kategoria_id=:kategoria_id, nimi=:nimi, tarkeys=:tarkeys WHERE id = :id');
+        $query->execute(array('id' => $id, 'kategoria_id' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
     }
 
     public function validate_name() {

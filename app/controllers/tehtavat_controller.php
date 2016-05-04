@@ -10,9 +10,9 @@ class TehtavaController extends BaseController {
 
     public static function store() {
         $params = $_POST;
-        $kategoria = $params['kategoria'];
+        $kategoria = $params['kategoria_id'];
         $attributes = array(
-            'kategoria' => $kategoria,
+            'kategoria_id' => $kategoria,
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys']
         );
@@ -52,12 +52,13 @@ class TehtavaController extends BaseController {
     public static function update($id) {
         self::check_logged_in();
         $params = $_POST;
-        $kategoria = $params['kategoria'];
-        $tehtava = new Tehtava(array(
+        $kategoria = $params['kategoria_id'];
+        $attributes = array(
+            'kategoria_id' => $kategoria,
             'nimi' => $params['nimi'],
-            'tarkeys' => $params['tarkeys'],
-            'kategoria' => $kategoria,
-        ));
+            'tarkeys' => $params['tarkeys']
+        );
+        $tehtava = new Tehtava($attributes);
         $tehtava->update($id);
         Kint::dump($params);
         Redirect::to('/tehtava' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
