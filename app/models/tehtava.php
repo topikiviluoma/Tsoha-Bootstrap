@@ -3,17 +3,17 @@
 class Tehtava extends BaseModel {
 
     //put your code here
-    public $id, $kategoria_id, $nimi, $tarkeys;
+    public $id, $kayttaja_id, $kategoria_id, $nimi, $tarkeys;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
         $this->validators = array('validate_name', 'validate_prio');
     }
 
-    public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Tehtava ORDER BY tarkeys DESC');
+    public static function all($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Tehtava WHERE kayttaja_id = :id ORDER BY tarkeys DESC');
 
-        $query->execute();
+        $query->execute(array('id' => $id));
 
         $rows = $query->fetchAll();
         $tehtavat = array();
@@ -51,8 +51,8 @@ class Tehtava extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Tehtava (kategoria_id, nimi, tarkeys) VALUES (:kategoria_id, :nimi, :tarkeys) RETURNING id');
-        $query->execute(array('kategoria_id' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
+        $query = DB::connection()->prepare('INSERT INTO Tehtava (kayttaja_id, kategoria_id, nimi, tarkeys) VALUES (:kayttaja_id, :kategoria_id, :nimi, :tarkeys) RETURNING id');
+        $query->execute(array('kayttaja_id' => $this->kayttaja_id, 'kategoria_id' => $this->kategoria_id, 'nimi' => $this->nimi, 'tarkeys' => $this->tarkeys));
         $row = $query->fetch();
 
         $this->id = $row['id'];

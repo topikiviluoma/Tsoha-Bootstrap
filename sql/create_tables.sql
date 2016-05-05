@@ -12,6 +12,7 @@ CREATE TABLE Kategoria(
 
 CREATE TABLE Tehtava(
     id SERIAL PRIMARY KEY,
+    kayttaja_id INTEGER REFERENCES Kayttaja(id),
     kategoria_id INTEGER REFERENCES Kategoria(id),
     nimi varchar(120) NOT NULL,
     tarkeys int

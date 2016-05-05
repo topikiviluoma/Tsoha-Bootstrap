@@ -24,5 +24,22 @@ class KayttajaController extends BaseController {
         $_SESSION['kayttaja'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
+    
+    public static function register() {
+        View::make('kayttaja/register.html');
+    }
+    
+    public static function store() {
+        $params = $_POST;
+        $attributes = array(
+            'nimi' => $params['nimi'],
+            'password' => $params['password']
+                
+        );
+        Kint::dump($attributes);
+        $kayttaja = new Kayttaja($attributes);
+        $kayttaja->save();
+        Redirect::to('/', array('message' => 'Rekisteröity onnistuneesti!'));
+    }
 
 }

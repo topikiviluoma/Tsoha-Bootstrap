@@ -4,14 +4,18 @@ class TehtavaController extends BaseController {
 
     public static function index() {
         self::check_logged_in();
-        $tehtavat = Tehtava::all();
+        $kayttajaId = $_SESSION['kayttaja'];
+        
+        $tehtavat = Tehtava::all($kayttajaId);
         View::make('tehtava/index.html', array('tehtavat' => $tehtavat));
     }
 
     public static function store() {
         $params = $_POST;
         $kategoria = $params['kategoria_id'];
+        $kayttajaId = $_SESSION['kayttaja'];
         $attributes = array(
+            'kayttaja_id' => $kayttajaId,
             'kategoria_id' => $kategoria,
             'nimi' => $params['nimi'],
             'tarkeys' => $params['tarkeys']
@@ -53,6 +57,7 @@ class TehtavaController extends BaseController {
         self::check_logged_in();
         $params = $_POST;
         $kategoria = $params['kategoria_id'];
+        
         $attributes = array(
             'kategoria_id' => $kategoria,
             'nimi' => $params['nimi'],

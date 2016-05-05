@@ -80,4 +80,13 @@ $routes->post('/kategoria/:id/destroy', function($id) {
     KategoriaController::destroy($id);
 });
 
+$routes->post('/kayttaja', function() {
+KayttajaController::store();
+});
+
+$routes->get('/register', function() {
+KayttajaController::register();
+});
+
+
 
