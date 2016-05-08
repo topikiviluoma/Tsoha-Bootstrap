@@ -37,8 +37,18 @@ class KayttajaController extends BaseController {
                 
         );
         $kayttaja = new Kayttaja($attributes);
-        $kayttaja->save();
-        Redirect::to('/', array('message' => 'Rekisteröity onnistuneesti!'));
+        $errors = $kayttaja->errors();
+        if (count($errors) == 0) {
+           $kayttaja->save();
+
+           Redirect::to('/', array('message' => 'Rekisteröity onnistuneesti!'));
+        } else {
+            View::make('kayttaja/register.html', array('errors' => $errors, 'attributes' => $attributes));
+        }
+        
+        
     }
+    
+    
 
 }
