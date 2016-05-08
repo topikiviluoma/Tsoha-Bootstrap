@@ -36,7 +36,6 @@ class KayttajaController extends BaseController {
             'password' => $params['password']
                 
         );
-        Kint::dump($attributes);
         $kayttaja = new Kayttaja($attributes);
         $kayttaja->save();
         Redirect::to('/', array('message' => 'Rekisteröity onnistuneesti!'));

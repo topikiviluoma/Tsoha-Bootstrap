@@ -23,7 +23,7 @@ class Kategoria extends BaseModel {
                 'nimi' => $row['nimi'],
             ));
         }
-        Kint::dump($rows);
+        
         return $kategoriat;
 
         return null;
@@ -45,7 +45,7 @@ class Kategoria extends BaseModel {
                 'tarkeys' => $row['tarkeys']
             ));
         }
-        Kint::dump($rows);
+       
         return $tehtavat;
 
         return null;
@@ -79,6 +79,7 @@ class Kategoria extends BaseModel {
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Kategoria WHERE id = :id');
         $query->execute(array('id' => $this->id));
+        
     }
 
     public function update($id) {

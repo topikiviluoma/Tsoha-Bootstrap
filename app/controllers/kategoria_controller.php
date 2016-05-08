@@ -52,7 +52,7 @@ class KategoriaController extends BaseController {
             'nimi' => $params['nimi'],
         ));
         $tehtava->update($id);
-        Kint::dump($params);
+        
         Redirect::to('/kategoria' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
     }
 

@@ -25,7 +25,7 @@ class Tehtava extends BaseModel {
                 'tarkeys' => $row['tarkeys']
             ));
         }
-        Kint::dump($rows);
+        
         return $tehtavat;
 
         return null;

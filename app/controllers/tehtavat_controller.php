@@ -65,7 +65,7 @@ class TehtavaController extends BaseController {
         );
         $tehtava = new Tehtava($attributes);
         $tehtava->update($id);
-        Kint::dump($params);
+        
         Redirect::to('/tehtava' . $tehtava->id, array('message' => 'Tiedot päivitetty!!'));
     }
 
