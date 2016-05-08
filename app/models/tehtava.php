@@ -73,7 +73,7 @@ class Tehtava extends BaseModel {
         if ($this->nimi == '' || $this->nimi == null) {
             $errors[] = 'Nimi ei saa olla tyhjä!';
         }
-        if (strlen($this->nimi) < 3) {
+        if (strlen($this->nimi) < 3 || strlen($this->nimi >= 120)) {
             $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
         }
 
